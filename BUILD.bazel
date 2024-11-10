@@ -1,7 +1,4 @@
-load("@crate_index_cargo_workspace//:defs.bzl",
-     "all_crate_deps"
-)
-
+load("@crates//:defs.bzl", "all_crate_deps")
 load("@rules_rust//rust:defs.bzl",
      "rust_binary",
      "rust_library",
@@ -25,4 +22,13 @@ rust_binary(
     edition = "2021",
     proc_macro_deps = all_crate_deps(proc_macro = True),
     deps = all_crate_deps(normal = True) + [":bazel_rust_sample"],
+)
+
+rust_binary(
+    name = "bazel_rust_sample_bin_aarch64",
+    srcs = ["src/main.rs"],
+    edition = "2021",
+    proc_macro_deps = all_crate_deps(proc_macro = True),
+    deps = all_crate_deps(normal = True) + [":bazel_rust_sample"],
+    platform = "//build/platforms:linux-aarch64",
 )

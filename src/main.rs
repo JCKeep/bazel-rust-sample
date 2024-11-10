@@ -12,7 +12,7 @@ struct Foo {
 
 #[tokio::main]
 async fn main() -> anyhow::Result<()> {
-    println!("Hello, world({})!", add(1, 2));
+    println!("Hello, world! {}", add(1, 2));
 
     let foo = Foo { a: 1234, b: true };
     let json = serde_json::to_string_pretty(&foo)?;
